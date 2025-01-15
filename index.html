@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Himalayan Saffron</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://t3.ftcdn.net/jpg/05/48/22/98/360_F_548229813_bPDphOQr8nGfuX4mbbWLUvxue1OzEuus.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            backdrop-filter: blur(6px);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .price-info {
+            margin-top: 10px;
+            font-size: 1.5rem;
+            text-align: center;
+            color: #ff8800;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="text"], input[type="email"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .amount-suggestions {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+
+        .amount-suggestions button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff8800;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .amount-suggestions button:hover {
+            background-color: #ff6600;
+        }
+
+        button[type="submit"] {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Himalayan Saffron</h1>
+        <p>Organically grown in the pristine Himalayan region, without harmful chemical fertilizers. Enjoy the purest saffron!</p>
+        <div class="price-info" id="priceInfo">Price per gram: $20</div> <!-- Price shown upfront -->
+<form action="https://formspree.io/f/xvggyrqq" method="POST">
+  <label>
+    Your email:
+    <input type="email" name="email" required>
+  </label>
+  
+  <label>
+    Name (optional):
+    <input type="text" name="name">
+  </label>
+  
+  <label>
+    Phone (optional):
+    <input type="text" name="phone">
+  </label>
+  
+  <label for="amount">Amount in grams:</label>
+            <input type="number" id="amount" name="amount" placeholder="Enter amount in grams" required>
+
+            <div class="amount-suggestions">
+                <button type="button" onclick="setAmount(5)">5g</button>
+                <button type="button" onclick="setAmount(10)">10g</button>
+                <button type="button" onclick="setAmount(50)">50g</button>
+                <button type="button" onclick="setAmount(100)">100g</button>
+            </div>
+  
+  <label>
+    Your message (optional):
+    <textarea name="message"></textarea>
+  </label>
+  
+  <!-- Submit button -->
+  <button type="submit">Send</button>
+</form>
+        
+    </div>
+
+    <script>
+        function setAmount(amount) {
+            document.getElementById('amount').value = amount;
+            calculatePrice();
+        }
+
+        function calculatePrice() {
+            const amount = parseInt(document.getElementById('amount').value) || 0;
+            let pricePerGram;
+
+          
+                pricePerGram = 20;
+            
+
+            const totalPrice = amount * pricePerGram;
+            document.getElementById('priceInfo').textContent = `Price per gram: $${pricePerGram} | Total price: $${totalPrice}`;
+        }
+
+        document.getElementById('amount').addEventListener('input', calculatePrice);
+
+        document.getElementById('saffronForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('We will contact you!');
+        });
+    </script>
+</body>
+</html>
