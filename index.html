@@ -107,13 +107,33 @@
 
   gtag('config', 'AW-11563616558');
 </script>
+
+    <!-- Event snippet for Submit lead form conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-11563616558/eXS8CKbI8YkaEK6S-4kr',
+      'value': 1.0,
+      'currency': 'INR',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
+
 </head>
 <body>
     <div class="container">
         <h1>Himalayan Saffron</h1>
         <p>Organically grown in the pristine Himalayan region, without harmful chemical fertilizers. Enjoy the purest saffron!</p>
         <div class="price-info" id="priceInfo">Price per gram: $20</div> <!-- Price shown upfront -->
-<form action="https://formspree.io/f/xvggyrqq" method="POST">
+<form action="https://formspree.io/f/xvggyrqq" method="POST" id="saffronForm">
   <label>
     Your email:
     <input type="email" name="email" required>
@@ -171,8 +191,7 @@
         document.getElementById('amount').addEventListener('input', calculatePrice);
 
         document.getElementById('saffronForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            alert('We will contact you!');
+            gtag_report_conversion();
         });
     </script>
 </body>
